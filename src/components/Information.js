@@ -1,12 +1,11 @@
 import { Grid, Card, CardContent, Typography, Stack } from "@mui/material";
-import { LocationOn, Thermostat, Dehaze, Opacity, Air, WbSunny, WbTwilight } from '@mui/icons-material';
+import { LocationOn, Thermostat, Dehaze, Opacity, Air, WbSunny, WbTwilight, ThermostatAuto } from '@mui/icons-material';
 
 const Information = ({ result }) => {
-
     return (
         result && Object.keys(result).length > 0 ? (
             <Grid container spacing={2} style={{ marginTop: '30px' }}>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12} sm={3}>
                     <Card>
                         <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                         <LocationOn fontSize="small" /> Location
@@ -16,7 +15,7 @@ const Information = ({ result }) => {
                         </CardContent>
                     </Card>
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12} sm={3}>
                     <Card>
                         <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                         <Thermostat fontSize="small" /> Temperature
@@ -26,7 +25,7 @@ const Information = ({ result }) => {
                         </CardContent>
                     </Card>
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12} sm={3}>
                     <Card>
                         <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                         <Dehaze fontSize="small" /> Condition
@@ -36,7 +35,17 @@ const Information = ({ result }) => {
                         </CardContent>
                     </Card>
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12} sm={3}>
+                    <Card>
+                        <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                        <ThermostatAuto fontSize="small" /> Feels Like
+                            <Typography>
+                                {Math.round(result.main.feels_like)}°C
+                            </Typography>
+                        </CardContent>
+                    </Card>
+                </Grid>
+                <Grid item xs={12} sm={3}>
                     <Card>
                         <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                         <Opacity fontSize="small" /> Humidity
@@ -46,7 +55,7 @@ const Information = ({ result }) => {
                         </CardContent>
                     </Card>
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12} sm={3}>
                     <Card>
                         <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                         <Air fontSize="small" /> Wind Speed
@@ -56,7 +65,7 @@ const Information = ({ result }) => {
                         </CardContent>
                     </Card>
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12} sm={3}>
                     <Card>
                         <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                         <WbSunny fontSize="small" /> Sunrise
@@ -66,7 +75,7 @@ const Information = ({ result }) => {
                         </CardContent>
                     </Card>
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12} sm={3}>
                     <Card>
                         <CardContent sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                         <WbTwilight fontSize="small" /> Sunset
