@@ -6,7 +6,7 @@ import { getWeather, getForecast } from '../services/api';
 import Alert from '@mui/material/Alert';
 
 
-const Form = ({ setResult, setDayForcastResult, setDaysForecastResult }) => {
+const Form = ({ setResult, setDayForcastResult, setDaysForecastResult, setHistory }) => {
     const [data, setData] = useState({ city:'', country: '' });
     const [alertBar, setAlertBar] = useState(false);
 
@@ -51,6 +51,17 @@ const Form = ({ setResult, setDayForcastResult, setDaysForecastResult }) => {
             }
 
             DaysForecast();
+
+            const localStorageData = {
+                date: new Date().toLocaleTimeString(),
+                temp: result.main.temp,
+                city,
+            }
+
+            const getHistory = JSON.parse(localStorage.getItem('history')) || [];
+            setHistory([...getHistory, localStorageData])
+            localStorage.setItem('history', JSON.stringify([...getHistory, localStorageData]))
+
         }
     };
 

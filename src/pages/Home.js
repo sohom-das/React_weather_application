@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Box, Paper, styled } from '@mui/material';
 import Form from '../components/Form';
 import Information from '../components/Information';
@@ -6,6 +6,7 @@ import Forcast from '../components/Forcast';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import History from '../components/History';
 
 const Container = styled(Box)({
     height: '100vh',
@@ -30,6 +31,11 @@ const Home = () => {
     const [result, setResult] = useState({})
     const [dayForcast, setDayForcastResult] = useState({})
     const [daysForecast, setDaysForecastResult] = useState([])
+    const [historyData, setHistory] = useState([])
+
+    useEffect(() => {
+        setHistory(JSON.parse(localStorage.getItem('history')) || [])
+    }, [])
 
     return (
         <>
@@ -44,7 +50,7 @@ const Home = () => {
         </Box>
         <Container>
             <Content elevation={3}>
-                <Form setResult={setResult} setDayForcastResult={setDayForcastResult} setDaysForecastResult={setDaysForecastResult}/>
+                <Form setResult={setResult} setDayForcastResult={setDayForcastResult} setDaysForecastResult={setDaysForecastResult} setHistory={setHistory}/>
                 <Box ml={2} sx={{ display: 'flex', flexDirection: 'column'}}>
                     {result && Object.keys(result).length > 0 && (
                         <Information result={result} />
@@ -53,6 +59,12 @@ const Home = () => {
                         <Forcast result={dayForcast} daysForecast={daysForecast}/>
                     )}
                 </Box>
+                {historyData.length > 0 && (
+                <Box ml={2} sx={{ mt: 4 }}>
+                    <Typography variant='h6'>Search History</Typography>
+                    <History data={historyData} />
+                </Box>
+                )}
             </Content>
         </Container>
         </>

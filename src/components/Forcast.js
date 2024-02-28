@@ -64,7 +64,7 @@ const Forecast = ({ result, daysForecast }) => {
                 <TableBody>
                     <TableRow>
                         {daysForecast.map((item, index) => (
-                            <TableCell key={index}>{item.temp} °C</TableCell>
+                            <TableCell key={index}>{Math.round(item.temp)} °C</TableCell>
                         ))}
                     </TableRow>
                 </TableBody>
